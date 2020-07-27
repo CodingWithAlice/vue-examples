@@ -4,7 +4,7 @@
     <HelloWorld/>
   </div> -->
     <!-- 这是响应式对象的实例调试 -->
-    <div>
+    <!-- <div>
         <h1> {{ nested.msg }} </h1>
         <ul>
             <li>
@@ -17,6 +17,18 @@
                 <a href="#">这是三个链接</a>
             </li>
         </ul>
+    </div> -->
+    <!-- 这是依赖收集的实例调试 -->
+    <div id="app">
+        <img src="./assets/logo.png">
+        <div v-if="flag">
+            {{ msg }}
+        </div>
+        <div v-else>
+            {{ msg1 }}
+        </div>
+        <button @click="change">change</button>
+        <button @click="toggle">toggle</button>
     </div>
 </template>
 
@@ -25,16 +37,32 @@
 
 export default {
   name: 'app',
-  components: {
-    // HelloWorld
-  },
-  data() {
-      return {
-          nested: {
-              msg: '这是响应式对象的实例调试'
-          }
-      }
-  },
+  components: {// HelloWorld
+},
+//   这是依赖收集的实例
+    data() {
+        return {
+            flag: true,
+            msg: '这是msg',
+            msg1: '这是msg1',
+        }
+    },
+    methods: {
+        change() {
+            this.msg = Math.random();
+        },
+        toggle() {
+            this.flag = !this.flag;
+        }
+    }
+//   这是响应式对象的实例调试
+//   data() {
+//       return {
+//           nested: {
+//               msg: '这是响应式对象的实例调试'
+//           }
+//       }
+//   },
 }
 </script>
 
