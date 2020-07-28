@@ -54,7 +54,13 @@ export default {
         toggle() {
             this.flag = !this.flag;
         }
-    }
+    },
+    // 写一个会触发无限更新的bug，自定义一个watcher
+    watch: {
+        msg() {
+            this.msg = Math.random();
+        },
+    },
 //   这是响应式对象的实例调试
 //   data() {
 //       return {
