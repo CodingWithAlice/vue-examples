@@ -31,38 +31,63 @@
         <button @click="toggle">toggle</button>
     </div> -->
     <!-- nextTick -->
-    <div id="app">
+    <!-- <div id="app">
         <img src="./assets/logo.png">
         <div ref="msg">
             {{ msg }}
         </div>
         <button @click="change">change</button>
+    </div> -->
+    <!-- 检测变化中的注意事项 -->
+    <div id="app">
+        <img src="./assets/logo.png">
+        <div>
+            {{ msg }}
+        </div>
+        <ul>
+            <li v-for="item in items" :key="item">{{ item }}</li>
+        </ul>
+        <button @click="add">add</button>
+        <button @click="change">change</button>
     </div>
 </template>
 
-
-
-
-
-
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-
+import Vue from 'vue';
 export default {
   name: 'app',
-  data() {return {msg: '这是初始msg',}},
+  data() {
+      return {
+          msg: {a: 'Hello'},
+          items: [1,2]
+      }},
   methods: {
+      add() {
+          //   this.msg.b = 'Vue';
+          Vue.set(this.msg, 'b', 'Vue');
+          //   this.items[2] = 4;
+          this.items.push(4);
+      },
       change() {
-          this.$nextTick(() => {
-              console.log('nextTick:', this.$refs.msg.innerText);
-          });
-          this.msg = '这是change方法中的msg改变';
-          console.log('sync:', this.$refs.msg.innerText);         
-          this.$nextTick().then(() => {
-              console.log('nextTick with Promise:', this.$refs.msg.innerText);
-          });
-      }
+        //   this.items[1] = 3;
+        Vue.set(this.items, 1, 3)
+      },
   }
+//   这是nextTick的实例
+//   data() {return {msg: '这是初始msg',}},
+//   methods: {
+//       change() {
+//           this.$nextTick(() => {
+//               console.log('nextTick:', this.$refs.msg.innerText);
+//           });
+//           this.msg = '这是change方法中的msg改变';
+//           console.log('sync:', this.$refs.msg.innerText);         
+//           this.$nextTick().then(() => {
+//               console.log('nextTick with Promise:', this.$refs.msg.innerText);
+//           });
+//       }
+//   }
 //   components: {// HelloWorld},
 //   这是依赖收集的实例
     // data() {
