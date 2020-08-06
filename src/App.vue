@@ -39,7 +39,7 @@
         <button @click="change">change</button>
     </div> -->
     <!-- 检测变化中的注意事项 -->
-    <div id="app">
+    <!-- <div id="app">
         <img src="./assets/logo.png">
         <div>
             {{ msg }}
@@ -49,31 +49,67 @@
         </ul>
         <button @click="add">add</button>
         <button @click="change">change</button>
+    </div> -->
+    <!-- 计算属性的实例 -->
+    <div id="app">
+        <img src="./assets/logo.png">
+        <div>
+            {{ name }}
+        </div>
+        <button @click="change">change</button>
+        <button @click="changeLast">change last name</button>
     </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
-import Vue from 'vue';
+// 这是计算属性的实例
 export default {
-  name: 'app',
-  data() {
-      return {
-          msg: {a: 'Hello'},
-          items: [1,2]
-      }},
-  methods: {
-      add() {
-          //   this.msg.b = 'Vue';
-          Vue.set(this.msg, 'b', 'Vue');
-          //   this.items[2] = 4;
-          this.items.push(4);
-      },
-      change() {
-        //   this.items[1] = 3;
-        Vue.set(this.items, 1, 3)
-      },
-  }
+    name: 'app',
+    data() {
+        return {
+            firstName: 'Alice',
+            lastName: 'Good',
+            useless: 0,
+        }
+    },
+    computed: {
+        name() {
+            if (this.useless > 0) {
+                return this.firstName + ',' + this.lastName;
+            }
+            return 'please click change'
+        }
+    },
+    methods: {
+        change() {
+            this.useless += 1;
+        },
+        changeLast() {
+            this.lastName = 'Bad';
+        }
+    }
+// 这是Vue.set实例
+// import Vue from 'vue';
+// export default {
+//   name: 'app',
+//   data() {
+//       return {
+//           msg: {a: 'Hello'},
+//           items: [1,2]
+//       }},
+//   methods: {
+//       add() {
+//           //   this.msg.b = 'Vue';
+//           Vue.set(this.msg, 'b', 'Vue');
+//           //   this.items[2] = 4;
+//           this.items.push(4);
+//       },
+//       change() {
+//         //   this.items[1] = 3;
+//         Vue.set(this.items, 1, 3)
+//       },
+//   }
 //   这是nextTick的实例
 //   data() {return {msg: '这是初始msg',}},
 //   methods: {
