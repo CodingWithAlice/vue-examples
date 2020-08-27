@@ -71,6 +71,11 @@ export default {
             firstName: 'Alice',
             lastName: 'Good',
             useless: 0,
+            nested: {
+                a: {
+                    b:1,
+                }
+            }
         }
     },
     computed: {
@@ -84,9 +89,28 @@ export default {
     methods: {
         change() {
             this.useless += 1;
+            this.nested.a.b = 2;
         },
         changeLast() {
             this.lastName = 'Bad';
+        }
+    },
+    watch: {
+        useless(newVal) {
+            console.log('newVal', newVal);
+        },
+        name: {
+            immediate: true,
+            handler(newVal){
+                console.log('name=', newVal)
+            }
+        },
+        nested: {
+            deep: true,
+            sync: true,
+            handler(newVal) {
+                console.log('nested=',newVal.a.b);
+            }
         }
     }
 // 这是Vue.set实例
