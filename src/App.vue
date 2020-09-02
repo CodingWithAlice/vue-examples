@@ -51,68 +51,87 @@
         <button @click="change">change</button>
     </div> -->
     <!-- 计算属性的实例 -->
-    <div id="app">
+    <!-- <div id="app">
         <img src="./assets/logo.png">
         <div>
             {{ name }}
         </div>
         <button @click="change">change</button>
         <button @click="changeLast">change last name</button>
+    </div> -->
+    <!-- 组件更新实例 -->
+    <div id="app">
+        <HelloWorld :flag="flag"></HelloWorld>
+        <button @click="toggle">切换</button>
     </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
-// 这是计算属性的实例
+// 这是组件更新的实例
+import HelloWorld from './components/HelloWorld.vue'
 export default {
     name: 'app',
+    components: {HelloWorld},
     data() {
         return {
-            firstName: 'Alice',
-            lastName: 'Good',
-            useless: 0,
-            nested: {
-                a: {
-                    b:1,
-                }
-            }
-        }
-    },
-    computed: {
-        name() {
-            if (this.useless > 0) {
-                return this.firstName + ',' + this.lastName;
-            }
-            return 'please click change'
+            flag: true,
         }
     },
     methods: {
-        change() {
-            this.useless += 1;
-            this.nested.a.b = 2;
+        toggle() {
+            this.flag = !this.flag;
         },
-        changeLast() {
-            this.lastName = 'Bad';
-        }
     },
-    watch: {
-        useless(newVal) {
-            console.log('newVal', newVal);
-        },
-        name: {
-            immediate: true,
-            handler(newVal){
-                console.log('name=', newVal)
-            }
-        },
-        nested: {
-            deep: true,
-            sync: true,
-            handler(newVal) {
-                console.log('nested=',newVal.a.b);
-            }
-        }
-    }
+// 这是计算属性的实例
+// export default {
+//     name: 'app',
+//     data() {
+//         return {
+//             firstName: 'Alice',
+//             lastName: 'Good',
+//             useless: 0,
+//             nested: {
+//                 a: {
+//                     b:1,
+//                 }
+//             }
+//         }
+//     },
+//     computed: {
+//         name() {
+//             if (this.useless > 0) {
+//                 return this.firstName + ',' + this.lastName;
+//             }
+//             return 'please click change'
+//         }
+//     },
+//     methods: {
+//         change() {
+//             this.useless += 1;
+//             this.nested.a.b = 2;
+//         },
+//         changeLast() {
+//             this.lastName = 'Bad';
+//         }
+//     },
+//     watch: {
+//         useless(newVal) {
+//             console.log('newVal', newVal);
+//         },
+//         name: {
+//             immediate: true,
+//             handler(newVal){
+//                 console.log('name=', newVal)
+//             }
+//         },
+//         nested: {
+//             deep: true,
+//             sync: true,
+//             handler(newVal) {
+//                 console.log('nested=',newVal.a.b);
+//             }
+//         }
+//     }
 // 这是Vue.set实例
 // import Vue from 'vue';
 // export default {
