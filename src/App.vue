@@ -58,30 +58,58 @@
         </div>
         <button @click="change">change</button>
         <button @click="changeLast">change last name</button>
-    </div> -->
+    </div> --> 
     <!-- 组件更新实例 -->
-    <div id="app">
+    <!-- <div id="app">
         <HelloWorld :flag="flag"></HelloWorld>
         <button @click="toggle">切换</button>
+    </div> -->
+    <!-- 组件更新实例：新旧节点相同的情况 -->
+    <div id="app">
+        <div>
+            <ul>
+                <li v-for="item in items" :key="item.id">{{ item.val }}</li>
+            </ul>
+        </div>
+        <button @click="change">change</button>
     </div>
 </template>
 
 <script>
-// 这是组件更新的实例
-import HelloWorld from './components/HelloWorld.vue'
+// 这是组件更新的实例：新旧节点相同的情况
 export default {
     name: 'app',
-    components: {HelloWorld},
+    components: {},
     data() {
         return {
-            flag: true,
+            items: [
+                {id: 0, val: 'A'},
+                {id: 1, val: 'B'},
+                {id: 2, val: 'C'},
+                {id: 3, val: 'D'},
+            ],
         }
     },
     methods: {
-        toggle() {
-            this.flag = !this.flag;
+        change() {
+            this.items.reverse().push({id: 4, val: 'E'});
         },
     },
+// 这是组件更新的实例
+// import HelloWorld from './components/HelloWorld.vue'
+// export default {
+//     name: 'app',
+//     components: {HelloWorld},
+//     data() {
+//         return {
+//             flag: true,
+//         }
+//     },
+//     methods: {
+//         toggle() {
+//             this.flag = !this.flag;
+//         },
+//     },
 // 这是计算属性的实例
 // export default {
 //     name: 'app',
