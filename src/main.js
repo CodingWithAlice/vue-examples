@@ -74,36 +74,48 @@
 //     }
 // })
 // 异步组件--高级异步组件
-import Vue from 'vue'
-import App from './App.vue'
+// import Vue from 'vue'
+// import App from './App.vue'
 // import { component } from 'vue/types/umd'
 
-const LoadingComp = {
-    template: '<div>loading</div>'
-}
+// const LoadingComp = {
+//     template: '<div>loading</div>'
+// }
 
-const ErrorComp = {
-    template: '<div>error</div>'
-}
+// const ErrorComp = {
+//     template: '<div>error</div>'
+// }
 
-const AsyncComp = () => ({
-    // 需要加载的组件，应当是一个Promise【借助webpack的import语法】
-    component: import('./components/HelloWorld.vue'),
-    // 加载中应当渲染的组件
-    loading: LoadingComp,
-    // 出错时渲染的组件
-    error: ErrorComp,
-    // 渲染加载中组件前的等待时间，默认200ms
-    delay: 200,
-    // 最长等待时间，超出此时间则渲染错误组件，默认 infinity
-    timeout: 1000
-})
+// const AsyncComp = () => ({
+//     // 需要加载的组件，应当是一个Promise【借助webpack的import语法】
+//     component: import('./components/HelloWorld.vue'),
+//     // 加载中应当渲染的组件
+//     loading: LoadingComp,
+//     // 出错时渲染的组件
+//     error: ErrorComp,
+//     // 渲染加载中组件前的等待时间，默认200ms
+//     delay: 200,
+//     // 最长等待时间，超出此时间则渲染错误组件，默认 infinity
+//     timeout: 1000
+// })
 
-Vue.component('HelloWorld', AsyncComp)
+// Vue.component('HelloWorld', AsyncComp)
+
+// new Vue({
+//     el: '#app',
+//     render(h) {
+//         return h(App)
+//     }
+// })
+
+// 编译
+import Vue from 'vue'
+import App from './App.vue'
+
+Vue.config.productionTip = false;
 
 new Vue({
     el: '#app',
-    render(h) {
-        return h(App)
-    }
+    components: { App },
+    template: '<App/>',
 })
