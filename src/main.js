@@ -117,5 +117,20 @@ Vue.config.productionTip = false;
 new Vue({
     el: '#app',
     components: { App },
-    template: '<App/>',
+    template: `
+        <div id="app"><div><ul v-if="isShow"><li v-for="(item, index) in items" :key="index"><><{{ item.val }}</li></ul></div><button @click="change">change</button></div>`, 
+    data() {
+        return {
+            isShow: false,
+            items: [
+                {val:1},
+                {val:2},
+            ]
+        }
+    },
+    methods: {
+        change() {
+            console.log('change');
+        }
+    }
 })
