@@ -109,6 +109,33 @@
 // })
 
 // 编译
+// import Vue from 'vue'
+// import App from './App.vue'
+
+// Vue.config.productionTip = false;
+
+// new Vue({
+//     el: '#app',
+//     components: { App },
+//     template: `
+//         <div id="app"><div><ul v-if="isShow"><li v-for="(item, index) in items" :key="index"><><{{ item.val }}</li></ul></div><button @click="change">change</button></div>`, 
+//     data() {
+//         return {
+//             isShow: false,
+//             items: [
+//                 {val:1},
+//                 {val:2},
+//             ]
+//         }
+//     },
+//     methods: {
+//         change() {
+//             console.log('change');
+//         }
+//     }
+// })
+
+// optimize
 import Vue from 'vue'
 import App from './App.vue'
 
@@ -117,20 +144,17 @@ Vue.config.productionTip = false;
 new Vue({
     el: '#app',
     components: { App },
-    template: `
-        <div id="app"><div><ul v-if="isShow"><li v-for="(item, index) in items" :key="index"><><{{ item.val }}</li></ul></div><button @click="change">change</button></div>`, 
+    template: '<div><ul :class="bindCls" class="list" v-if="isShow"><li v-for="(item, index) in data" @click="clickItem(index)" :key="index">{{item}}:{{index}}</li></ul><div><p>111</p></div><p>222</p></div>', 
     data() {
         return {
-            isShow: false,
-            items: [
-                {val:1},
-                {val:2},
-            ]
+            bindCls: 'a',
+            isShow: true,
+            data: ['A', 'B', 'C', 'D'],
         }
     },
     methods: {
-        change() {
-            console.log('change');
+        clickItem(index) {
+            console.log('change', index);
         }
     }
 })
