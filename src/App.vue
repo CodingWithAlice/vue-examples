@@ -66,28 +66,36 @@
     </div> -->
     <!-- 组件更新实例：新旧节点相同的情况 -->
     <div id="app">
-        <div>
+        <!-- <div>
             <ul>
                 <li v-for="item in items" :key="item.id">{{ item.val }}</li>
             </ul>
         </div>
-        <button @click="change">change</button>
+        <button @click="change">change</button> -->
+        <!-- <hello-world :prop-data="items"></hello-world> -->
+        <div v-html="pureHtml"></div>
+        <div v-html="spanHtml"></div>
     </div>
 </template>
 
 <script>
 // 这是组件更新的实例：新旧节点相同的情况
+// import HelloWorld from './components/HelloWorld.vue'
 export default {
     name: 'app',
-    components: {},
+    components: {
+        // HelloWorld
+    },
     data() {
         return {
-            items: [
-                {id: 0, val: 'A'},
-                {id: 1, val: 'B'},
-                {id: 2, val: 'C'},
-                {id: 3, val: 'D'},
-            ],
+            // items: [
+            //     {id: 0, val: 'A'},
+            //     {id: 1, val: 'B'},
+            //     {id: 2, val: 'C'},
+            //     {id: 3, val: 'D'},
+            // ],
+            spanHtml: `<span>你好</span>`,
+            pureHtml: '你好',
         }
     },
     methods: {

@@ -33,10 +33,11 @@
 <script>
 export default {
   name: 'HelloWorld',
-  props: {
-    msg: String,
-    flag: Boolean,
-  }
+//   props: {
+//     msg: String,
+//     flag: Boolean,
+//   };
+    props:['propData'],
 }
 </script>
 

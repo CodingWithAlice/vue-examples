@@ -32,15 +32,25 @@
 //     render: h => h(childComp) 
 // })
 // 全局注册代码
-// import Vue from 'vue'
-// import App from './App.vue'
+import Vue from 'vue'
+import App from './App.vue'
 
-// Vue.component('app', App)
+Vue.component('app', App)
 
-// new Vue({
-//     el: '#app',
-//     template: '<app></app>'
-// })
+new Vue({
+    el: '#app',
+    template: `<div>
+    <div>你好aaa</div>
+    <div v-html="pureHtml"></div>
+    <div v-html="spanHtml"></div>
+    </div>`,
+    data() {
+        return {
+            spanHtml: `<span>你好111</span>`,
+            pureHtml: '你好111',
+        }
+    }
+})
 // 异步组件--工厂函数
 // import Vue from 'vue'
 // import App from './App.vue'
@@ -136,25 +146,25 @@
 // })
 
 // optimize
-import Vue from 'vue'
-import App from './App.vue'
+// import Vue from 'vue'
+// import App from './App.vue'
 
-Vue.config.productionTip = false;
+// Vue.config.productionTip = false;
 
-new Vue({
-    el: '#app',
-    components: { App },
-    template: '<div><ul :class="bindCls" class="list" v-if="isShow"><li v-for="(item, index) in data" @click="clickItem(index)" :key="index">{{item}}:{{index}}</li></ul><div><p>111</p></div><p>222</p></div>', 
-    data() {
-        return {
-            bindCls: 'a',
-            isShow: true,
-            data: ['A', 'B', 'C', 'D'],
-        }
-    },
-    methods: {
-        clickItem(index) {
-            console.log('change', index);
-        }
-    }
-})
+// new Vue({
+//     el: '#app',
+//     components: { App },
+//     template: '<div><ul :class="bindCls" class="list" v-if="isShow"><li v-for="(item, index) in data" @click="clickItem(index)" :key="index">{{item}}:{{index}}</li></ul><div><p>111</p></div><p>222</p></div>', 
+//     data() {
+//         return {
+//             bindCls: 'a',
+//             isShow: true,
+//             data: ['A', 'B', 'C', 'D'],
+//         }
+//     },
+//     methods: {
+//         clickItem(index) {
+//             console.log('change', index);
+//         }
+//     }
+// })
